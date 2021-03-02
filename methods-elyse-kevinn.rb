@@ -30,16 +30,16 @@
 # p in_between 13
 # Create a method that takes in a string and determines if the string is a palindrome.
 
-def palindrome string
-  if string == string.reverse
-    'Palindrome'
-  else
-    'Not a palindrome'
-  end
-end
+# def palindrome string
+#   if string == string.reverse
+#     'Palindrome'
+#   else
+#     'Not a palindrome'
+#   end
+# end
 
-p palindrome 'racecar'
-p palindrome 'alpha'
+# p palindrome 'racecar'
+# p palindrome 'alpha'
 
 
 # Challenge: Password Checker
