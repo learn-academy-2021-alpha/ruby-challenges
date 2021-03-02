@@ -18,15 +18,25 @@
 # Subtract my_favorite_number from someones_favorite
 # Change the value of my favorite number to be 26 times its current value
 
-my_favorite_number = 23
-p my_favorite_number / 4
+# my_favorite_number = 23
+# p my_favorite_number / 4
 
-someones_favorite = (13.0 / 2).round
-# p (someones_favorite / 2).round
-p someones_favorite
-p (someones_favorite - my_favorite_number)
+# someones_favorite = (13.0 / 2).round
+# # p (someones_favorite / 2).round
+# p someones_favorite
+# p (someones_favorite - my_favorite_number)
 
-p (my_favorite_number * 26)
+# p (my_favorite_number * 26)
 
 
+# Create a variable and return it in a sentence string interpolation
+# Create a variable that contains a string and test some of the Ruby string methods
+# .upcase
+# .reverse
+# .include?
+# .capitalize
 
+# puts "enter your name"
+# name = gets.chomp
+# p name
+# puts "hello #{name}. how are you?"
