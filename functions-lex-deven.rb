@@ -66,23 +66,30 @@
 
 
 # You are writing the user registration page for a secure web site. On the registration page, the user has to enter a user ID and a password, which has to adhere to the to following criteria:
-
-user_name = gets.chomp
-
-password = gets.chomp
+puts "enter username"
+u_name = gets.chomp
+"enter password"
+p_word = gets.chomp
 
 def password_check user_name , password
     if user_name.downcase == password.downcase
         "Password cannot be the same as the username"
     elsif user_name.length < 6 || password.length <6
         "Username and or Password needs to be atleast 6 characters long"
-    elsif password.include? "#" == false && password.include? "!" == false && password.include? "$" == false
-        "Password must include at least one of !$"
-    elsif user_name.include? "#" == true || user_name.include? "!" == true || user_name.include? "$" == true || user_name.include? " " == true
+    elsif password.include? ("#") == false && password.include? ("!") == false && password.include? ("$") == false
+        "Password must include at least one of !#$"
+    elsif user_name.include? ("#") == true || user_name.include? ("!") == true || user_name.include? ("$") == true || user_name.include? (" ") == true
         "Username cannot contain !#$ or spaces"
     elsif password.downcase == "password"
         "Password cannot be the word password"
     end
+end
+
+puts password_check u_name , p_word
+
+
+
+
 # As a developer, I can create a method that checks for the following rules for a user ID and password:
 
 # User ID and password cannot be the same.
