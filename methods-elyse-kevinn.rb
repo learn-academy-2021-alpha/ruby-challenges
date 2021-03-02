@@ -1,16 +1,16 @@
 # Challenges
 # Create a method called sum_these_numbers which takes two integers as an argument and prints their sum to the screen.
 # def sum_these_numbers(num1, num2)
-#   num1 + num2 
+#   num1 + num2
 # end
 
 # p sum_these_numbers 7, 2
 # Create a method called is_even, which takes a single integer, and which then returns true if the number is even, and false otherwise.
 # def is_even number
-#   if number % 2 == 0 
-#     true 
-#   else 
-#     false 
+#   if number % 2 == 0
+#     true
+#   else
+#     false
 #   end
 # end
 
@@ -21,10 +21,10 @@
 # def in_between number
 #   if number < 10 && number > 1
 #     'Valid'
-#   else 
+#   else
 #     'Invalid'
 #   end
-# end 
+# end
 
 # p in_between 8
 # p in_between 13
@@ -45,6 +45,23 @@
 # Challenge: Password Checker
 # User Stories
 # You are writing the user registration page for a secure web site. On the registration page, the user has to enter a user ID and a password, which has to adhere to the to following criteria:
+
+def password_checker (user_id, password)
+  #characters = "!#$"
+  if user_id != password && user_id.length >= 6 && password.length >= 6 && password.include?('!') #&& user_id.exclude? characters
+    puts "valid"
+  else
+    puts "invald"
+  end
+end
+
+puts "Enter User ID"
+user_id = gets.chomp
+puts "Enter Password"
+password = gets.chomp
+password_checker user_id, password
+
+
 
 # As a developer, I can create a method that checks for the following rules for a user ID and password:
 # User ID and password cannot be the same.
