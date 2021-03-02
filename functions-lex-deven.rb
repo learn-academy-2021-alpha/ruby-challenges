@@ -1,7 +1,7 @@
 # Challenges
 # Create a method called sum_these_numbers which takes two integers as an argument and prints their sum to the screen.
 
-# def sum_these_numbers num1 , num2 
+# def sum_these_numbers num1 , num2
 #     puts num1 + num2
 # end
 
@@ -69,14 +69,20 @@
 
 user_name = gets.chomp
 
-password = get.chomp
+password = gets.chomp
 
 def password_check user_name , password
     if user_name.downcase == password.downcase
         "Password cannot be the same as the username"
     elsif user_name.length < 6 || password.length <6
         "Username and or Password needs to be atleast 6 characters long"
-
+    elsif password.include? "#" == false && password.include? "!" == false && password.include? "$" == false
+        "Password must include at least one of !$"
+    elsif user_name.include? "#" == true || user_name.include? "!" == true || user_name.include? "$" == true || user_name.include? " " == true
+        "Username cannot contain !#$ or spaces"
+    elsif password.downcase == "password"
+        "Password cannot be the word password"
+    end
 # As a developer, I can create a method that checks for the following rules for a user ID and password:
 
 # User ID and password cannot be the same.
