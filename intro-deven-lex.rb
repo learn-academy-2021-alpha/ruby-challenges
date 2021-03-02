@@ -74,7 +74,15 @@
 # .capitalize
 # Arrays Challenges
 # Create an array with five of your favorite TV shows
+
+nums = [ 1 ,2, 3, 4 ,5]
+
 # Find the length of the array
 # From the full TV show array, extract your top 3 TV shows in a new array
+
+top_three = [nums[0] , nums[1] , nums[2]]
+p top_three
+
+
 # Reverse the array
 # Return one element from the array
