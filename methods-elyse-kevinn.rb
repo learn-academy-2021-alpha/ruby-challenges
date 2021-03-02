@@ -47,11 +47,15 @@
 # You are writing the user registration page for a secure web site. On the registration page, the user has to enter a user ID and a password, which has to adhere to the to following criteria:
 
 def password_checker (user_id, password)
-  #characters = "!#$"
-  if user_id != password && user_id.length >= 6 && password.length >= 6 && password.include?('!') #&& user_id.exclude? characters
+  characters = ['!', '#', '$']
+  if user_id != password && user_id.length >= 6 && password.length >= 6 && password.any?('!', '#', '$') && user_id.any?(characters)
     puts "valid"
+    p password.split('').any?(characters)
+    p user_id.split('').any?(characters)
   else
     puts "invald"
+    p password.split('').any?(characters)
+    p user_id.split('').any?(characters)
   end
 end
 
