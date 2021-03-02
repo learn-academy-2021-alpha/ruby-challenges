@@ -9,5 +9,48 @@
 #     num%2 ==0 
 # end
 #     p is_even 7
+
 # Create a method that takes a number as an argument and prints "Valid" if the number is between 1 and 10 (inclusive) and "Invalid" otherwise.
+# def num_validation num
+#     if num.between?(1,10)
+#         "valid"
+#     else
+#         "invalid"
+#     end
+# end
+# p num_validation 4
+# p num_validation 20
+
 # Create a method that takes in a string and determines if the string is a palindrome.
+
+# def is_palindrome string
+#     string == string.reverse
+# end
+# p is_palindrome "hello"
+# p is_palindrome "mom"
+# p is_palindrome "racecar"
+
+
+# Password Checker
+# User Stories
+# You are writing the user registration page for a secure web site. On the registration page, the user has to enter a user ID and a password, which has to adhere to the to following criteria:
+puts "enter username"
+username = gets.chomp
+puts "enter password"
+password = gets.chomp
+
+# As a developer, I can create a method that checks for the following rules for a user ID and password:
+def name_validation (username, password)
+    if username == password 
+    "User ID and password cannot be the same."
+    elsif username.length <= 6 && password.length <= 6
+        "User ID and password must be at least six characters long."
+    elsif password.includes?('!') || password.includes?('#') || password.includes?('$')  
+        "Password must contain at least one of:'!' '#' '$'"
+    elsif username.includes?('!') || username.includes?('#') || username.includes?('$') || username.includes?(' ')
+        "User ID cannot contain the following characters: '!' '#' '$' or spaces"
+    elsif password == "password"
+    "Password cannot be the word 'password'."
+    end
+end
+p name_validation(username, password)
