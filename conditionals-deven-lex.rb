@@ -9,11 +9,9 @@
 
 
 puts "Player 1: Rock, Paper, or Scissors?"
-player_1 = gets
-puts player_1
+player_1 = gets.chomp
 puts "Player 2: Rock, Paper, or Scissors?"
-player_2 = gets
-puts player_2
+player_2 = gets.chomp
 
 if player_1 == "Rock" && player_2 == "Scissors"
   puts "Player 1 wins!"
