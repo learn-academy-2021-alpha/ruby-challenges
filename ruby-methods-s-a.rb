@@ -31,3 +31,31 @@
 # end
 # p palindrome "racecar"
 # p palindrome "hello"
+
+# Password checker
+number_arr = 
+
+def password_checker username, password
+    if password == username
+        puts "you cannot have the same password as your user id"
+    elsif password.length < 6
+        puts "make it longer than 6 characters for your security"
+    elsif password.include? "$" || "!" || "#" || " "
+        puts "please do not iclude these special characters: ! , # , $"
+    elsif password == "password"
+        puts "that's weak"
+    elsif password.count("0-9") == 0
+        puts "please add integers to your password" 
+    else
+        puts "You are good to go!"
+    end
+end
+# we thought this worked but it still seems to be evaluating wrong hehe 
+
+p "Enter username"
+username = gets.chomp
+p "Enter password"
+password = gets.chomp
+
+p password_checker username, password
+
