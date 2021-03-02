@@ -28,5 +28,19 @@ p (someones_favorite - my_favorite_number)
 
 p (my_favorite_number * 26)
 
+# Strings Challenges
+# Create a variable and return it in a sentence string interpolation
+# Create a variable that contains a string and test some of the Ruby string methods
+# .upcase
+# .reverse
+# .include?
+# .capitalize
 
+name = "Nick"
+puts "Hello #{name}, How are you?"
 
+my_string = "whats up"
+p my_string.upcase
+p my_string.reverse
+p my_string.include?("a")
+p my_string.capitalize
