@@ -48,7 +48,7 @@
 
 def password_checker (user_id, password)
   characters = ['!', '#', '$']
-  if user_id != password && user_id.length >= 6 && password.length >= 6 && password.any?('!', '#', '$') && user_id.any?(characters)
+  if user_id != password && user_id.length >= 6 && password.length >= 6 && password.split('').any? { |i| characters.include? i } #&& user_id.any?(characters)
     puts "valid"
     p password.split('').any?(characters)
     p user_id.split('').any?(characters)
