@@ -11,10 +11,14 @@ player_two = gets.chomp.downcase
 if (player_one == "rock" && player_two == "scissors") || (player_one == "scissors" && player_two == "paper") || (player_one == "paper" && player_two == "rock")
     puts "#{player_one} beats #{player_two}"
 
-elsif (player_two == "rock" && player_one == "scissors") || (player_two == "scissors" && player_one == "paper") || (player_two == "paper" && player_one == "rock")
-    puts "#{player_two} beats #{player_one}"
+elsif (player_two == "rock" && player_one == "scissors") || 
+        (player_two == "scissors" && player_one == "paper") || 
+        (player_two == "paper" && player_one == "rock")
+            puts "#{player_two} beats #{player_one}"
+
 elsif (player_two == "rock" && player_one == "rock") || (player_two == "scissors" && player_one == "scissors") || (player_two == "paper" && player_one == "paper")
     puts "draw"
+
 end
 
 
