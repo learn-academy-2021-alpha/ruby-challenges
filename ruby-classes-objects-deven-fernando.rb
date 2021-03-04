@@ -6,29 +6,27 @@
 # Story: As a developer, I can give a Task a description and retrieve it.
 # Story: As a developer, I can mark a Task done.
 class Task
-    def set_task_list description, done
-        @description = description
-        @done =  done
+    attr_accessor :item1, :item2
+  
+    def initialize(item1, item2)
+      @item1 = item1
+      @item2 = item2
     end
+  end
+  
+  new_task = Task.new("portfolio", "not done")
+  puts new_task.item1
+  puts new_task.item2
+  
+  new_task.item2 = "Done"
+  puts new_task.item1
+  puts new_task.item2
+  
 
-    def get_done
-        @done
-    end
-
-    def get_task_list
-        @description
-    end
-end
-
-
-task_list = Task.new 
-
-task_list.set_task_list('portfolio', 'done')
-
-p task_list
 
 
 # Story: As a developer, I can mark a Task done.
+
 # Story: As a developer, when I print a Task that is done, its status is shown.
 
 # Challenge: Color Palette
