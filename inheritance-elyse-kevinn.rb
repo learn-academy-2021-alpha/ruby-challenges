@@ -7,27 +7,69 @@
 #
 # Story: As a developer, I can age my Animal up one year at a time. - done
 
+
+# Story: As a developer, I can return my Animal's age, as well as if they're alive. Hint: Use attr_accessor as well as an initialize method. - done
+#
+# Story: As a developer, I can create a Fish that inherits from Animal.
+#
+
 class Animal
   attr_accessor :alive, :age
-  def initialize
-    @alive = true
+  def initialize(alive, age)
+    @alive = 'alive'
     @age = 0
   end
 
   def age_up
     @age += 1
   end
+
+  def change_alive
+    @alive = 'peacefully dead'
+  end
 end
 
-animal = Animal.new
-p animal.age
-p animal.age_up
-p animal
 
-# Story: As a developer, I can return my Animal's age, as well as if they're alive. Hint: Use attr_accessor as well as an initialize method. - done
-#
-# Story: As a developer, I can create a Fish that inherits from Animal.
-#
+class Fish < Animal
+  attr_accessor :cold_blooded, :type
+  def initialize(alive, age, type)
+    super(alive, age)
+    @cold_blooded = true
+    @type = type
+  end
+
+  def get_info
+    puts "My salmon is #{@alive}, is age #{@age} and is #{@type}"
+  end
+
+  def age_four 
+    if @age == 4 
+      @alive= 'dead'
+    else
+      @alive = 'alive'
+    end
+  end
+end
+
+salmon = Fish.new(true, 0, 'Atlantic')
+p salmon
+salmon.age_up
+p salmon.age
+salmon.get_info
+p salmon.age_up
+p salmon.age_up
+p salmon.age_up
+p salmon.age_four
+p salmon
+
+
+# animal = Animal.new
+# p animal.age
+# p animal.age_up
+# p animal
+
+
+
 # Story: As a developer, I can initialize all of my fish to be cold_blooded (yes, there is one fish who is technically fully warm-blooded but we aren't going to talk about that).
 #
 # Story: As a developer, I can create a Salmon that inherits from Fish.
