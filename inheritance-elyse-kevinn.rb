@@ -13,54 +13,54 @@
 # Story: As a developer, I can create a Fish that inherits from Animal.
 #
 
-class Animal
-  attr_accessor :alive, :age
-  def initialize(alive, age)
-    @alive = 'alive'
-    @age = 0
-  end
-
-  def age_up
-    @age += 1
-  end
-
-  def change_alive
-    @alive = 'peacefully dead'
-  end
-end
-
-
-class Fish < Animal
-  attr_accessor :cold_blooded, :type
-  def initialize(alive, age, type)
-    super(alive, age)
-    @cold_blooded = true
-    @type = type
-  end
-
-  def get_info
-    puts "My salmon is #{@alive}, is age #{@age} and is #{@type}"
-  end
-
-  def age_four 
-    if @age == 4 
-      @alive= 'dead'
-    else
-      @alive = 'alive'
-    end
-  end
-end
-
-salmon = Fish.new(true, 0, 'Atlantic')
-p salmon
-salmon.age_up
-p salmon.age
-salmon.get_info
-p salmon.age_up
-p salmon.age_up
-p salmon.age_up
-p salmon.age_four
-p salmon
+# class Animal
+#   attr_accessor :alive, :age
+#   def initialize(alive, age)
+#     @alive = 'alive'
+#     @age = 0
+#   end
+#
+#   def age_up
+#     @age += 1
+#   end
+#
+#   def change_alive
+#     @alive = 'peacefully dead'
+#   end
+# end
+#
+#
+# class Fish < Animal
+#   attr_accessor :cold_blooded, :type
+#   def initialize(alive, age, type)
+#     super(alive, age)
+#     @cold_blooded = true
+#     @type = type
+#   end
+#
+#   def get_info
+#     puts "My salmon is #{@alive}, is age #{@age} and is #{@type}"
+#   end
+#
+#   def age_four
+#     if @age == 4
+#       @alive= 'dead'
+#     else
+#       @alive = 'alive'
+#     end
+#   end
+# end
+#
+# salmon = Fish.new(true, 0, 'Atlantic')
+# p salmon
+# salmon.age_up
+# p salmon.age
+# salmon.get_info
+# p salmon.age_up
+# p salmon.age_up
+# p salmon.age_up
+# p salmon.age_four
+# p salmon
 
 
 # animal = Animal.new
@@ -84,23 +84,88 @@ p salmon
 #
 # Story: As a developer, if my Salmon reaches the ripe old age of 4, I can make it die peacefully after a full and happy life. Hint: You will need a method that changes the status of alive in the initialize method of Animal.
 #
-# Story: As a developer, I can create a Mammal that inherits from Animal.
+# Story: As a developer, I can create a Mammal that inherits from Animal. -- done
+# Story: As a developer, I can initialize all of my Mammals to be warm_blooded. -- done
+# Story: As a developer, I can create a Bear that inherits from Mammal. --done
+# Story: As a developer, I can age my Bear up. --done
+# Story: As a developer, I can see a message that tells me all of my Bear's information. --done
+# Story: As a developer, if my Bear turns 20 years old, I can make it die peacefully after a full and happy life. Hint: You will need a method that changes the status of alive in the initialize method of Animal. --done
+# Story: As a developer, I can create a Mammal of my choice. -- done
+# Story: As a developer, I can interact with the new Mammal via various methods. -- done
+# Story: As a developer, I can see a message that tells me all of my new Mammal's information. -- done
+
+# class Animal
+#   attr_accessor :alive, :age, :type
+#   def initialize(alive, age, type)
+#     @alive = 'alive'
+#     @age = 0
+#     @type = type
+#   end
 #
-# Story: As a developer, I can initialize all of my Mammals to be warm_blooded.
+#   def age_up num
+#     @age += num
+#   end
 #
-# Story: As a developer, I can create a Bear that inherits from Mammal.
+#   def change_alive
+#     @alive = 'peacefully dead'
+#   end
 #
-# Story: As a developer, I can age my Bear up.
+#   def get_info
+#     puts "My #{@type} is #{@alive} and is age #{@age}."
+#   end
+# end
 #
-# Story: As a developer, I can see a message that tells me all of my Bear's information.
+# class Mammal < Animal
+#   attr_accessor :type
+#   def initialize (alive, age, type)
+#     super(alive, age, type)
+#     @warm_blooded = true
+#     # @type = type
+#   end
 #
-# Story: As a developer, if my Bear turns 20 years old, I can make it die peacefully after a full and happy life. Hint: You will need a method that changes the status of alive in the initialize method of Animal.
+#   def age_twenty
+#     if @age == 20
+#       @alive = 'dead'
+#     else
+#       @alive = 'alive'
+#     end
+#   end
+# end
 #
-# Story: As a developer, I can create a Mammal of my choice.
+# class Fish < Animal
+#   attr_accessor :cold_blooded, :type
+#   def initialize(alive, age, type)
+#     super(alive, age, type)
+#     @cold_blooded = true
+#     # @type = type
+#   end
 #
-# Story: As a developer, I can interact with the new Mammal via various methods.
+#   def get_info
+#     puts "My salmon is #{@alive}, is age #{@age} and is #{@type}"
+#   end
 #
-# Story: As a developer, I can see a message that tells me all of my new Mammal's information.
+#   def age_four
+#     if @age == 4
+#       @alive= 'dead'
+#     else
+#       @alive = 'alive'
+#     end
+#   end
+# end
+#
+# salmon = Fish.new(true, 0, 'Atlantic')
+# bear = Mammal.new(true, 0, 'bear')
+# bear.age_up 1
+# bear.get_info
+# bear.age_up 19
+# bear.age_twenty
+# bear.get_info
+# cat = Mammal.new(true, 0, 'cat')
+# cat.get_info
+# cat.age_up 20
+# cat.age_twenty
+# cat.get_info
+
 #
 # Stretch Challenges
 # Story: As a developer, I can keep a collection of two of each Animal. Hint: You'll want to add your Animals into an array.
