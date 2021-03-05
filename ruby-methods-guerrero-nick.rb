@@ -43,14 +43,16 @@ password = gets.chomp
 def name_validation (username, password)
     if username == password 
     "User ID and password cannot be the same."
-    elsif username.length <= 6 && password.length <= 6
+    elsif username.length < 6 || password.length < 6
         "User ID and password must be at least six characters long."
-    elsif password.includes?('!') || password.includes?('#') || password.includes?('$')  
-        "Password must contain at least one of:'!' '#' '$'"
-    elsif username.includes?('!') || username.includes?('#') || username.includes?('$') || username.includes?(' ')
-        "User ID cannot contain the following characters: '!' '#' '$' or spaces"
+    elsif username.include?('!') || username.include?('#') || username.include?('$') || username.include?(' ')
+        "User ID cannot contain the following characters '!' '#' '$' or spaces"
+    elsif !password.include?('!') && !password.include?('#') && !password.include?('$')  
+        "Password must contain at least one of '!' '#' '$'"
     elsif password == "password"
     "Password cannot be the word 'password'."
+    else
+        "Your name and password are approved"
     end
 end
 p name_validation(username, password)
