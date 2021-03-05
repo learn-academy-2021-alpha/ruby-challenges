@@ -94,65 +94,74 @@
 # Story: As a developer, I can interact with the new Mammal via various methods. -- done
 # Story: As a developer, I can see a message that tells me all of my new Mammal's information. -- done
 
-# class Animal
-#   attr_accessor :alive, :age, :type
-#   def initialize(alive, age, type)
-#     @alive = 'alive'
-#     @age = 0
-#     @type = type
-#   end
+class Animal
+  attr_accessor :alive, :age, :type
+  def initialize(alive, age, type)
+    @alive = 'alive'
+    @age = age
+    @type = type
+  end
+
+  def age_up num
+    @age += num
+  end
+
+  def change_alive
+    @alive = 'peacefully dead'
+  end
+
+  def get_info
+    puts "My #{@type} is #{@alive} and is age #{@age}."
+  end
+end
+
+class Mammal < Animal
+  attr_accessor :type
+  def initialize (alive, age, type)
+    super(alive, age, type)
+    @warm_blooded = true
+    # @type = type
+  end
+
+  def age_twenty
+    if @age == 20
+      @alive = 'dead'
+    else
+      @alive = 'alive'
+    end
+  end
+end
+
+class Fish < Animal
+  attr_accessor :cold_blooded, :type
+  def initialize(alive, age, type)
+    super(alive, age, type)
+    @cold_blooded = true
+    # @type = type
+  end
+
+  def get_info
+    puts "My salmon is #{@alive}, is age #{@age} and is #{@type}"
+  end
+
+  def age_four
+    if @age == 4
+      @alive= 'dead'
+    else
+      @alive = 'alive'
+    end
+  end
+end
 #
-#   def age_up num
-#     @age += num
-#   end
-#
-#   def change_alive
-#     @alive = 'peacefully dead'
-#   end
-#
-#   def get_info
-#     puts "My #{@type} is #{@alive} and is age #{@age}."
-#   end
-# end
-#
-# class Mammal < Animal
-#   attr_accessor :type
-#   def initialize (alive, age, type)
-#     super(alive, age, type)
-#     @warm_blooded = true
-#     # @type = type
-#   end
-#
-#   def age_twenty
-#     if @age == 20
-#       @alive = 'dead'
-#     else
-#       @alive = 'alive'
-#     end
-#   end
-# end
-#
-# class Fish < Animal
-#   attr_accessor :cold_blooded, :type
-#   def initialize(alive, age, type)
-#     super(alive, age, type)
-#     @cold_blooded = true
-#     # @type = type
-#   end
-#
-#   def get_info
-#     puts "My salmon is #{@alive}, is age #{@age} and is #{@type}"
-#   end
-#
-#   def age_four
-#     if @age == 4
-#       @alive= 'dead'
-#     else
-#       @alive = 'alive'
-#     end
-#   end
-# end
-#
+
+bear1 = Mammal.new(true, 8, 'black bear')
+bear2 = Mammal.new(true, 5, 'brown bear')
+bears = [bear1, bear2]
+p bears
+
+puts bears.sort { |bear1, bear2| bear1.age <=> bear2.age }
+
+
 # salmon = Fish.new(true, 0, 'Atlantic')
 # bear = Mammal.new(true, 0, 'bear')
 # bear.age_up 1
