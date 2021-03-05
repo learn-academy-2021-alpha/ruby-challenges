@@ -28,7 +28,11 @@
 
 # p (my_favorite_number * 26)
 
+<<<<<<< HEAD
 
+=======
+# Strings Challenges
+>>>>>>> d87ac46370f10c893d4ae3660bbc9c6028821c9b
 # Create a variable and return it in a sentence string interpolation
 # Create a variable that contains a string and test some of the Ruby string methods
 # .upcase
@@ -36,7 +40,18 @@
 # .include?
 # .capitalize
 
+<<<<<<< HEAD
 # puts "enter your name"
 # name = gets.chomp
 # p name
 # puts "hello #{name}. how are you?"
+=======
+name = "Nick"
+puts "Hello #{name}, How are you?"
+
+my_string = "whats up"
+p my_string.upcase
+p my_string.reverse
+p my_string.include?("a")
+p my_string.capitalize
+>>>>>>> d87ac46370f10c893d4ae3660bbc9c6028821c9b
