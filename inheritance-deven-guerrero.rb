@@ -1,11 +1,10 @@
 # Story: As a developer, I can make an Animal.
 class Animal 
-    attr_accessor :alive, :age, :animal_type
+    attr_accessor :alive, :age
 
-    def initialize (animal_type)
-        @animal_type = animal_type
+    def initialize age
         @alive = true
-        @age = 0
+        @age = age
     end
 
     def give_age
@@ -13,24 +12,56 @@ class Animal
     end
 
     def get_info
-        puts "animal = #{animal_type}\n alive =#{alive}\n age = #{age}"
+        puts "alive =#{@alive}\nage = #{@age}\n"
     end
-
-
 end
 
-animal1 = Animal.new "tiger"
-animal1.give_age
-animal1.give_age
-animal1.get_info
+class Fish < Animal
+    attr_accessor :cold_blooded
 
-# Story: As a developer, upon initialization, I can give my Animal a status of alive, which will be set to true.
+    def initialize(age)
+        super(age)
+        @cold_blooded = "cold blooded"
+    end
 
-# Story: As a developer, I can give my Animal an age of 0 upon creation.
+    def get_info
+        super
+            puts "blood type = #{@cold_blooded}"
+    end
+end
 
-# Story: As a developer, I can age my Animal up one year at a time.
+class Salmon < Fish
+    attr_accessor :species
 
-# Story: As a developer, I can return my Animal's age, as well as if they're alive. Hint: Use attr_accessor as well as an initialize method.
+    def initialize(age, species)
+        super(age)
+        @species = species
+    end
+
+    while @age <= 4
+        @alive = false
+    end
+    def get_info
+        super
+            puts "species = #{species}"
+    end
+end
+
+salmon = Salmon.new 0, "Atlantic"
+# salmon.get_info
+salmon.give_age
+salmon.give_age
+salmon.give_age
+salmon.give_age
+salmon.get_info
+
+
+
+
+
+
+
+
 
 # Story: As a developer, I can create a Fish that inherits from Animal.
 
