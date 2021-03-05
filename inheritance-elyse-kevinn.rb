@@ -94,6 +94,11 @@
 # Story: As a developer, I can interact with the new Mammal via various methods. -- done
 # Story: As a developer, I can see a message that tells me all of my new Mammal's information. -- done
 
+module Swim
+  def can_swim
+    puts 'I can swim!'
+  end
+end
 class Animal
   attr_accessor :alive, :age, :type
   def initialize(alive, age, type)
@@ -134,6 +139,7 @@ end
 
 class Fish < Animal
   attr_accessor :cold_blooded, :type
+  include Swim
   def initialize(alive, age, type)
     super(alive, age, type)
     @cold_blooded = true
@@ -162,6 +168,7 @@ p bears
 puts bears.sort { |bear1, bear2| bear1.age <=> bear2.age }
 
 
+
 # salmon = Fish.new(true, 0, 'Atlantic')
 # bear = Mammal.new(true, 0, 'bear')
 # bear.age_up 1
@@ -175,6 +182,12 @@ puts bears.sort { |bear1, bear2| bear1.age <=> bear2.age }
 # cat.age_twenty
 # cat.get_info
 
+
+salmon = Fish.new(true, 2, 'Sockeye')
+catfish = Fish.new(true, 1, 'catfish')
+salmon.can_swim
+catfish.can_swim
+p catfish
 #
 # Stretch Challenges
 # Story: As a developer, I can keep a collection of two of each Animal. Hint: You'll want to add your Animals into an array.
