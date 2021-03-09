@@ -15,25 +15,38 @@ describe 'When a Task is instantiated' do
   it 'does not raise an error' do
     expect {Task.new}.to_not raise_error
   end
-
+# Story: As a developer, I can give a Task a title and retrieve it.
   it 'Task has a title' do
     my_task = Task.new
     my_task.title = 'Homework'
     expect(my_task.title).to be_a String
     expect(my_task.title).to eq 'Homework'
   end
-end
-
-# Story: As a developer, I can give a Task a title and retrieve it.
-
-
-
 # Story: As a developer, I can give a Task a description and retrieve it.
-#
+  it 'task has a description' do
+    my_task = Task.new
+    my_task.description = 'code challenges'
+    expect(my_task.description).to be_a String
+    expect(my_task.description).to eq 'code challenges'
+  end
 # Story: As a developer, I can mark a Task done. Tasks should be initialized as 'in progress'.
 #
+  it 'task is marked as done' do
+    my_task = Task.new
+    my_task.change_progress
+    expect(my_task.change_progress).to eq 'done'
+    expect(my_task.change_progress).to be_a String
+  end
 # Story: As a developer, when I print a Task that is done, its status is shown.
 #
+it 'task is marked as done' do
+  my_task = Task.new 
+ expect{my_task.change_progress}.to change{my_task.progress}.from("in progress").to('done')
+
+  end
+end
+
+
 # Story: As a developer, I can add all of my Tasks to a TaskList.
 #
 # Story: As a developer with a TaskList, I can print the completed items.
