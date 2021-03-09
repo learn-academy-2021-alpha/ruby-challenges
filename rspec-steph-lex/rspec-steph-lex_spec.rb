@@ -4,7 +4,7 @@ require_relative 'rspec-steph-lex'
 
 describe Task do
   it 'does not raise an error' do
-    expect{ Task.new }.to_not raise_error
+    expect{ Task.new 'task','description' }.to_not raise_error
   end
 
 

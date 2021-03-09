@@ -20,9 +20,19 @@ describe 'When Tasklist is initialized' do
   it 'can print the completed items' do
     my_tasklist = Tasklist.new
     my_tasklist.tasks << Task.new
-    my_tasklist.completed = my_task
+    my_tasklist.completed
+    expect(my_tasklist.completed).to be_a Array
+    expect(my_tasklist.completed).to eq []
   end
 
 # Story: As a developer with a TaskList, I can print the incomplete items.
+
+  it 'can print the incomplete items' do
+    my_tasklist = Tasklist.new
+    my_tasklist.tasks << Task.new
+    my_tasklist.not_complete
+    expect(my_tasklist.not_complete).to be_a Array
+    expect(my_tasklist.not_complete.length).to eq 1
+  end
 #
 end
