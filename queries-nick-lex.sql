@@ -18,7 +18,7 @@ WHERE indepyear < 1963
 SELECT name, population, lifeexpectancy
 FROM country
 WHERE continent='Africa'
-AND population < 30000000 
+AND population < 30000000
 AND lifeexpectancy > 45
 -- Which countries are something like a republic? (HINT: Are there 122 or 143?)
 SELECT name, governmentform
@@ -87,22 +87,73 @@ LIMIT 1
 
 -- Subqueries: WITH
 -- What are the forms of government for the top ten countries by surface area? (HINT: Number 10 is Kazakstan)
--- What are the forms of government for the top ten richest nations by gnp?
+WITH top_ten AS (SELECT name, governmentform, surfacearea FROM country ORDER BY surfacearea DESC LIMIT 10)
+SELECT name, governmentform
+FROM top_ten
 
+-- What are the forms of government for the top ten richest nations by gnp?
+WITH top_ten AS (SELECT name, governmentform, gnp FROM country ORDER BY gnp DESC LIMIT 10)
+SELECT name, governmentform
+FROM top_ten
 
 -- Aggregate Functions: GROUP BY
 -- Which region has the highest average gnp? (HINT: North America)
--- Who is the most influential head of state measured by population? (HINT: Jiang Zemin)
--- Who is the most influential head of state measured by surface area? (HINT: Elisabeth II)
--- What is the average life expectancy for all continents?
--- What are the most common forms of government? (HINT: use count(*))
--- How many countries are in North America?
--- What is the total population of all continents?
+SELECT region, AVG(gnp)
+FROM country
+GROUP BY region
+ORDER BY AVG DESC
+LIMIT 1
 
+
+-- Who is the most influential head of state measured by population? (HINT: Jiang Zemin)
+SELECT headofstate, SUM(population)
+FROM country
+GROUP BY headofstate
+ORDER BY SUM DESC
+LIMIT 1
+
+-- Who is the most influential head of state measured by surface area? (HINT: Elisabeth II)
+SELECT headofstate, SUM(surfacearea)
+FROM country
+GROUP BY headofstate
+ORDER BY SUM DESC
+LIMIT 1
+
+-- What is the average life expectancy for all continents?
+SELECT continent, AVG(lifeexpectancy)
+FROM country
+GROUP BY continent
+
+-- What are the most common forms of government? (HINT: use count(*))
+SELECT governmentform, COUNT(*)
+FROM country
+GROUP BY governmentform
+ORDER BY count DESC
+
+-- How many countries are in North America?
+SELECT continent, COUNT(name)
+FROM country
+WHERE continent='North America'
+GROUP BY continent
+
+-- What is the total population of all continents?
+SELECT continent, SUM(population)
+FROM country
+GROUP BY continent
 
 -- Stretch Challenges
 -- Which countries have the letter ‘z’ in the name? How many?
+SELECT name
+FROM country
+WHERE name LIKE '%z%'
+
 -- Of the smallest 10 countries by area, which has the biggest gnp? (HINT: Macao)
+WITH top_ten AS (SELECT name, surfacearea, gnp FROM country ORDER BY surfacearea LIMIT 10)
+SELECT name, gnp
+FROM top_ten
+ORDER BY gnp DESC
+
+
 -- Of the smallest 10 countries by population, which has the biggest per capita gnp?
 -- Of the biggest 10 countries by area, which has the biggest gnp?
 -- Of the biggest 10 countries by population, which has the biggest per capita gnp?
