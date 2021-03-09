@@ -6,7 +6,7 @@
 #
 # Story: As a developer, I can mark a Task done. Tasks should be initialized as 'in progress'.(done)
 #
-# Story: As a developer, when I print a Task that is done, its status is shown.
+# Story: As a developer, when I print a Task that is done, its status is shown. (done)
 #
 # Story: As a developer, I can add all of my Tasks to a TaskList.
 #
@@ -39,6 +39,13 @@ describe 'when Housecleaning is initialized' do
   it 'has an initial value of in progress' do
     my_house = Housecleaning.new
     expect(my_house.in_progress).to eq 'in progress'
+    expect(my_house.in_progress).to be_a String
+  end
+
+  it 'marks task is done' do
+    my_house = Housecleaning.new
+    expect(my_house.done).to eq 'done'
+    expect(my_house.done).to be_a String
   end
 
 end
