@@ -1,5 +1,6 @@
 require 'rspec'
 require_relative 'ruby-testing-elyse-jr'
+require_relative 'tasklist'
 
 
 # Challenge: Tasklist with TDD
@@ -40,24 +41,8 @@ describe 'When a Task is instantiated' do
 # Story: As a developer, when I print a Task that is done, its status is shown.
 #
 it 'task is marked as done' do
-  my_task = Task.new 
+  my_task = Task.new
  expect{my_task.change_progress}.to change{my_task.progress}.from("in progress").to('done')
 
   end
 end
-
-
-# Story: As a developer, I can add all of my Tasks to a TaskList.
-#
-# Story: As a developer with a TaskList, I can print the completed items.
-#
-# Story: As a developer with a TaskList, I can print the incomplete items.
-#
-# Stretch: Due Date
-# Story: As a developer, I can give a Task a due date. Hint: Use the built-in Ruby Date class.
-#
-# Story: As a developer with a TaskList, I can list all the not completed items that are due today.
-#
-# Story: As a developer with a TaskList, I can list all the not completed items in order of due date.
-#
-# Story: As a developer with a TaskList with and without due dates, I can list all the not completed items in order of due date, and then the items without due dates.
