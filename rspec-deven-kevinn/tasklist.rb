@@ -1,12 +1,13 @@
 class Tasklist 
-  attr_accessor :task
+  attr_accessor :task, :description, :progress
 
   def initialize task=''
     @task = task
+    @task = ''
+    @progress = "in progress"
   end
-
-  def give_task 
-    @task = task
+  def mark_done
+    @progress = "done"
   end
 end
 

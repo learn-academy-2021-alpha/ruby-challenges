@@ -14,6 +14,16 @@ describe Tasklist do
     expect(my_list.task).to eq 'Do laundry'
     expect(my_list.task).to be_a String
   end
+  it 'can give a description and retrieve it' do
+    my_list = Tasklist.new
+    my_list.description = "whites first"
+    expect(my_list.description).to eq 'whites first'
+    expect(my_list.description).to be_a String
+  end
+  it "can change the task's progress" do
+    my_list = Tasklist.new
+    expect{ my_list.mark_done }.to change { my_list.progress }.from("in progress").to ("done")
+  end
 end
 
 
