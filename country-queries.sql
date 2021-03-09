@@ -1,0 +1,67 @@
+-- code, name, continent, region, surfacearea, indepyear, population, gnp, localname, governmentform, headofstate, capital
+-- country is a table in the counntries database
+SELECT * FROM country
+-- return all info from country file
+
+SELECT * FROM country LIMIT 10
+-- limit the view to 10 rows
+
+SELECT * FROM country WHERE surfacearea > 1000000 
+-- gives data where the surfacearea is greater than 1mil
+
+SELECT name, surfacearea FROM country WHERE surfacearea > 1000000
+-- return only the name and surfacearea columns
+
+SELECT name, population FROM country
+
+SELECT name, population FROM country ORDER BY population 
+-- order by population from least to greatest
+
+SELECT name, population FROM country WHERE population !=0 ORDER BY population
+-- dont return any selections where there is no population
+
+SELECT name, population FROM country WHERE population !=0 ORDER BY population DESC 
+-- orders from greatest to least 
+
+SELECT name, governmentform FROM country
+
+SELECT name, governmentform FROM country WHERE governmentform LIKE 'Republic'
+-- LIKE is a matcher, so return all selections where Republic is the government form
+
+SELECT name, governmentform FROM country WHERE governmentform LIKE '%epublic'
+-- whatever comes before the % (wildcard) goes, so federal republic will be includes, along with people's republic, not JUST republic
+
+-- AS would create temporary or alias columns
+SELECT name, population, surfacearea, population / surfacearea AS density FROM country
+-- here density column is being created to hold the product of the division between population and surfacearea
+
+SELECT name, population, surfacearea, population / surfacearea AS density FROM country ORDER BY density DESC LIMIT 1
+-- we can use that new density column to continue manipulating the selection, you can also order by adding DESC to the end, and limit to 1 selection (the highest one)
+
+-- WITH claus -> you can create an alias table in the same way AS creates an alias column
+
+-- (example question to use WITH on from syllabus challenges): What are the forms of government for the top ten countries by surface area? (HINT: Number 10 is Kazakstan)
+WITH top_ten AS (SELECT name, surfacearea, governmentform FROM country ORDER BY surfacearea DESC LIMIT 10)
+-- we can use this ^ set of info and wrap it inside of a AS claus and also give it a name 'top_ten' and add WITH infront of it to create the new alias table which will be able to be references like this:
+SELECT name, governmentform FROM top_ten 
+
+SELECT SUM(population) FROM country
+-- sum is an aggregate function, allows you to perform behavior on a set of data. This would add up all the populations in the rows. 
+
+WITH top_ten2 AS (SELECT name, surfacearea FROM country ORDER BY surfacearea DESC LIMIT 10)
+-- here you can get the sum of the alias table you created
+SELECT SUM (surfacearea) FROM top_ten2
+
+-- GROUP BY is used together with the SELECT statement to group of set of rows that have similar data. 
+SELECT region, AVG(lifeexpectancy) FROM country GROUP BY region; --
+-- by region, average up the lifeexpectancy and then group by the region, so its taking all the countries in a specific region, taking the average of all of the countries in that region and grouping them by the region.
+
+
+-- SQL Challenges --------------------------------------
+-- What is the population of the US? (HINT: 278357000)
+-- What is the area of the US? (HINT: 9.36352e+06)
+-- Which countries gained their independence before 1963?
+-- List the countries in Africa that have a population smaller than 30,000,000 and a life expectancy of more than 45? (HINT: 37 entries)
+-- Which countries are something like a republic? (HINT: Are there 122 or 143?)
+-- Which countries are some kind of republic and achieved independence after 1945? (HINT: 92 entries)
+-- Which countries achieved independence after 1945 and are not some kind of republic? (HINT: 27 entries).
