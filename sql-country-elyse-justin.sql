@@ -102,12 +102,102 @@ LIMIT 1
 
 -- Subqueries: WITH
 -- What are the forms of government for the top ten countries by surface area? (HINT: Number 10 is Kazakstan)
+
+WITH top_surface AS
+(SELECT name, governmentform, surfacearea
+FROM country
+ORDER BY surfacearea DESC
+LIMIT 10) 
+
+SELECT name, governmentform
+FROM top_surface
+
+
 -- What are the forms of government for the top ten richest nations by gnp?
+
+WITH top_surface AS
+(SELECT name, governmentform, gnp
+FROM country
+ORDER BY gnp DESC
+LIMIT 10) 
+
+SELECT name, governmentform
+FROM top_surface
+
+
 -- Aggregate Functions: GROUP BY
 -- Which region has the highest average gnp? (HINT: North America)
+
+SELECT region, AVG(gnp)
+FROM country
+GROUP BY region
+ORDER BY AVG(gnp) DESC
+LIMIT 1
+
+
 -- Who is the most influential head of state measured by population? (HINT: Jiang Zemin)
+-- we want to count the instances that headofstate appears, return person with the highest count based on population
+
+SELECT headofstate, SUM(population)
+FROM country
+GROUP BY headofstate
+ORDER BY sum DESC
+LIMIT 1
+
 -- Who is the most influential head of state measured by surface area? (HINT: Elisabeth II)
+
+SELECT headofstate, SUM(surfacearea)
+FROM country
+GROUP BY headofstate
+ORDER BY sum DESC
+LIMIT 1
+
+
+
 -- What is the average life expectancy for all continents?
+
+WITH avg_life AS(SELECT continent, AVG(lifeexpectancy)
+FROM country
+GROUP BY continent)
+
+SELECT AVG(avg)
+FROM avg_life
+
 -- What are the most common forms of government? (HINT: use count(*))
+
+SELECT governmentform, count(*)
+FROM country
+GROUP BY governmentform
+ORDER BY count DESC
+LIMIT 5
+
 -- How many countries are in North America?
+
+WITH na_added AS (SELECT name, count(*)
+FROM country
+WHERE region = 'North America'
+GROUP BY name
+ORDER BY count)
+
+SELECT SUM(count)
+FROM na_added
+
+----
+
+SELECT region, COUNT(name)
+FROM country
+WHERE region='North America'
+GROUP BY region
+
 -- What is the total population of all continents?
+
+SELECT continent, SUM(population)
+FROM country
+GROUP BY continent
+
+WITH sum_pop AS (SELECT continent, SUM(population)
+FROM country
+GROUP BY continent)
+
+SELECT SUM(sum)
+FROM sum_pop
