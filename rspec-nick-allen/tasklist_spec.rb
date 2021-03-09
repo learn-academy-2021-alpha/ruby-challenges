@@ -1,49 +1,52 @@
 require 'rspec'
+require_relative 'task'
 require_relative 'tasklist'
 
-# For each story:
-# Copy the story into your RSpec file as a comment
-# Write the test(s) that class/method tests must pass
-# Then run the test(s) and see that they fail
-# Then implement the class/method, with comments, so that it passes the tests one at a time
-
-# User Stories
-# Story: As a developer, I can create a Task.
-describe 'Task' do
-    it 'has to be real' do 
-        expect { Task.new }.to_not raise_error
+# Story: As a developer, I can add all of my Tasks to a TaskList.
+describe Tasklist do
+    it 'has to be real' do
+        expect{ Tasklist.new }.to_not raise_error
     end
 
-    # Story: As a developer, I can give a Task a title and retrieve it.
-    it 'has a title' do
+    it 'can hold a lists of tasks' do
         my_task = Task.new
         my_task.title = 'laundry'
-        expect(my_task.title).to be_a String
-        expect(my_task.title).to eq 'laundry'
-    end
-
-    # Story: As a developer, I can give a Task a description and retrieve it.
-    it 'has a description' do
-        my_task = Task.new
         my_task.description = 'wash clothes'
-        expect(my_task.description).to be_a String
-        expect(my_task.description).to eq 'wash clothes'
+        my_task.status = 'done'
+        my_tasklist = Tasklist.new
+        my_tasklist.tasks << my_task
+        expect( my_tasklist.tasks ).to be_a Array
+        expect( my_tasklist.tasks.length ).to eq 1
+    end
+    
+    # Story: As a developer with a TaskList, I can print the completed items.
+    it 'can print list of completed items' do
+        my_task = Task.new
+        my_task.title = 'laundry'
+        my_task.description = 'wash clothes'
+        my_task.status = 'done'
+        my_task2 = Task.new
+        my_task2.title = 'dishes'
+        my_task2.description = 'wash dishes'
+        my_task2.status = 'done'
+        my_tasklist = Tasklist.new
+        my_tasklist.tasks << my_task
+        my_tasklist.tasks << my_task2
+        expect{ my_tasklist.check_status 'done' }.to change{ my_tasklist.done.length }.from(0).to(2)
     end
 
-    # Story: As a developer, I can mark a Task done. Tasks should be initialized as 'in progress'.
-    it 'has a status or a defualt status of in progress' do 
+    # Story: As a developer with a TaskList, I can print the incomplete items.
+    it 'can print list of incompleted items' do
         my_task = Task.new
-        expect(my_task.status).to be_a String
-        expect(my_task.status).to eq 'in progress'
+        my_task.title = 'laundry'
+        my_task.description = 'wash clothes'
+        my_task2 = Task.new
+        my_task2.title = 'dishes'
+        my_task2.description = 'wash dishes'
+        my_tasklist = Tasklist.new
+        my_tasklist.tasks << my_task
+        my_tasklist.tasks << my_task2
+        expect{ my_tasklist.check_status 'in progress' }.to change{ my_tasklist.in_progress.length }.from(0).to(2)
     end
 end
 
-
-
-# Story: As a developer, when I print a Task that is done, its status is shown.
-
-# Story: As a developer, I can add all of my Tasks to a TaskList.
-
-# Story: As a developer with a TaskList, I can print the completed items.
-
-# Story: As a developer with a TaskList, I can print the incomplete items.
