@@ -154,9 +154,93 @@ GROUP BY continent
 
 -- Stretch Challenges
 -- Which countries have the letter ‘z’ in the name? How many?
+-- List of countries with 'Z'
+SELECT name
+FROM country
+WHERE name LIKE '%Z%' OR name LIKE '%z%'
+
+-- Count of countries with 'Z'
+WITH z_countries AS (
+    SELECT name
+    FROM country
+    WHERE name LIKE '%Z%' OR name LIKE '%z%'
+)
+SELECT COUNT(name)
+FROM z_countries
+
 -- Of the smallest 10 countries by area, which has the biggest gnp? (HINT: Macao)
+WITH smallest_area AS (
+    SELECT name, surfacearea, gnp
+    FROM country
+    ORDER BY surfacearea
+    LIMIT 10
+)
+SELECT name, gnp
+FROM smallest_area
+ORDER BY gnp DESC
+LIMIT 1
+
 -- Of the smallest 10 countries by population, which has the biggest per capita gnp?
+-- capital = gnp / population
+WITH smallest_pop AS (
+    SELECT name, population, gnp
+    FROM country
+    WHERE population != 0 AND gnp != 0
+    ORDER BY population
+    LIMIT 10
+)
+SELECT name, population, gnp, gnp / population AS per_capita_gnp
+FROM smallest_pop
+ORDER BY per_capita_gnp DESC
+LIMIT 1
+
 -- Of the biggest 10 countries by area, which has the biggest gnp?
+WITH biggest_area AS (
+    SELECT name, surfacearea, gnp
+    FROM country
+    ORDER BY surfacearea DESC
+    LIMIT 10
+)
+SELECT name, gnp
+FROM biggest_area
+ORDER BY gnp DESC
+LIMIT 1
+
 -- Of the biggest 10 countries by population, which has the biggest per capita gnp?
+WITH biggest_pop AS (
+    SELECT name, population, gnp
+    FROM country
+    ORDER BY population DESC
+    LIMIT 10
+)
+SELECT name, population, gnp, gnp / population AS per_capita_gnp
+FROM biggest_pop
+ORDER BY per_capita_gnp DESC
+LIMIT 1
+
 -- What is the sum of surface area of the 10 biggest countries in the world? The 10 smallest?
+-- Biggest
+WITH biggest_surface_area AS (
+    SELECT name, surfacearea
+    FROM country
+    ORDER BY surfacearea DESC
+    LIMIT 10
+)
+SELECT SUM(surfacearea)
+FROM biggest_surface_area
+
+-- Smallest
+WITH smallest_surface_area AS (
+    SELECT name, surfacearea
+    FROM country
+    ORDER BY surfacearea
+    LIMIT 10
+)
+SELECT SUM(surfacearea)
+FROM smallest_surface_area
+
 -- What year is this country database from? Cross reference various pieces of information to determine the age of this database.
+
+-- 2001
+-- Peru President: 2000 - 2001
+-- George W. Bush: 2001 - 2009
