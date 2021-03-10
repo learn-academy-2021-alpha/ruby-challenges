@@ -107,7 +107,7 @@ WITH top_surface AS
 (SELECT name, governmentform, surfacearea
 FROM country
 ORDER BY surfacearea DESC
-LIMIT 10) 
+LIMIT 10)
 
 SELECT name, governmentform
 FROM top_surface
@@ -119,7 +119,7 @@ WITH top_surface AS
 (SELECT name, governmentform, gnp
 FROM country
 ORDER BY gnp DESC
-LIMIT 10) 
+LIMIT 10)
 
 SELECT name, governmentform
 FROM top_surface
@@ -201,3 +201,75 @@ GROUP BY continent)
 
 SELECT SUM(sum)
 FROM sum_pop
+
+
+-- Stretch Challenges
+-- Which countries have the letter ‘z’ in the name? How many?
+
+SELECT COUNT(name)
+from country
+WHERE name LIKE '%z%'
+
+-- Of the smallest 10 countries by area, which has the biggest gnp? (HINT: Macao)
+
+WITH gnp_small AS (SELECT name, surfacearea, gnp
+from country
+ORDER BY surfacearea
+LIMIT 10)
+SELECT name, gnp
+FROM gnp_small
+ORDER BY gnp DESC
+LIMIT 1
+
+-- Of the smallest 10 countries by population, which has the biggest per capita gnp?
+--GNP / population
+
+SELECT name, population, gnp, gnp / population
+AS density
+FROM country
+WHERE gnp > 0
+ORDER BY density
+LIMIT 1
+
+
+-- Of the biggest 10 countries by area, which has the biggest gnp?
+WITH gnp_big AS (SELECT name, gnp, surfacearea
+FROM country
+ORDER BY surfacearea DESC
+LIMIT 10)
+SELECT name, gnp
+FROM gnp_big
+ORDER BY gnp DESC
+LIMIT 1
+
+-- Of the biggest 10 countries by population, which has the biggest per capita gnp?
+
+SELECT name, population, gnp, gnp / population
+AS density
+FROM country
+WHERE gnp > 0
+ORDER BY density DESC
+LIMIT 1
+
+-- What is the sum of surface area of the 10 biggest countries in the world? The 10 smallest?
+
+WITH surfacearea_desc AS (SELECT name, surfacearea
+FROM country
+ORDER BY surfacearea DESC
+LIMIT 10)
+SELECT SUM(surfacearea)
+FROM surfacearea_desc
+
+WITH surfacearea_desc AS (SELECT name, surfacearea
+FROM country
+ORDER BY surfacearea
+LIMIT 10)
+SELECT SUM(surfacearea)
+FROM surfacearea_desc
+
+
+-- What year is this country database from? Cross reference various pieces of information to determine the age of this database.
+
+--between 2001 - 2008 - George W. Bush was in office and is listed as headofstate
+--Between 2001 - 2003 - Saddam Hussein was headofstate in Iraq
+--Between 2002 - 2003 - East Timor found independance in 2002
