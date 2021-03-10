@@ -78,7 +78,7 @@ SELECT name, governmentform, indepyear FROM country WHERE governmentform LIKE '%
 -- Which countries achieved independence after 1945 and are not some kind of republic? (HINT: 27 entries).
 SELECT name, governmentform, indepyear FROM country WHERE indepyear > 1945 AND governmentform NOT LIKE '%epublic'
 
--- ORDER BY
+-- ORDER BY ----------------------------------------------------------
 
 -- Which fifteen countries have the lowest life expectancy? (HINT: starts with Zambia, ends with Sierra Leonne)
 
@@ -125,11 +125,62 @@ WHERE population > 0
 ORDER BY population
 LIMIT 1
 
--- Which fifteen countries have the lowest life expectancy? (HINT: starts with Zambia, ends with Sierra Leonne)
--- Which fifteen countries have the highest life expectancy? (HINT: starts with Andorra, ends with Spain)
--- Which five countries have the lowest population density (density = population / surfacearea)? (HINT: starts with Greenland)
--- Which countries have the highest population density?(HINT: starts with Macao)
--- Which is the smallest country by area? (HINT: .4)
--- Which is the smallest country by population? (HINT: 50)?
--- Which is the biggest country by area? (HINT: 1.70754e+07)
--- Which is the biggest country by population? (HINT: 1277558000)
+--Subqueries WITH ----------------------------------------------------
+
+-- What are the forms of government for the top ten countries by surface area? (HINT: Number 10 is Kazakstan)
+WITH forms_of_government AS (SELECT name, governmentform, surfacearea 
+FROM country 
+WHERE surfacearea > 0 
+ORDER BY surfacearea
+DESC LIMIT 10)
+SELECT name, governmentform FROM forms_of_government
+
+-- What are the forms of government for the top ten richest nations by gnp?
+WITH rich_governments AS (SELECT name, governmentform, gnp 
+FROM country 
+WHERE gnp > 0 
+ORDER BY gnp
+DESC LIMIT 10)
+SELECT name, governmentform FROM rich_governments
+
+-- Aggregate Functions: GROUP BY ----------------------------------------
+
+-- Which region has the highest average gnp? (HINT: North America)
+SELECT region, AVG(gnp) 
+FROM country 
+GROUP BY region
+ORDER BY AVG(gnp) DESC
+
+-- Who is the most influential head of state measured by population? (HINT: Jiang Zemin)
+SELECT headofstate, SUM(population) 
+FROM country 
+GROUP BY headofstate 
+ORDER BY SUM(population) DESC 
+
+-- Who is the most influential head of state measured by surface area? (HINT: Elisabeth II)
+SELECT headofstate, SUM(surfacearea) 
+FROM country 
+GROUP BY headofstate 
+ORDER BY SUM(surfacearea) DESC 
+
+-- What is the average life expectancy for all continents?
+SELECT continent, AVG(lifeexpectancy)
+FROM country
+GROUP BY continent
+
+-- What are the most common forms of government? (HINT: use count(*))
+SELECT governmentform, COUNT(*)
+FROM country
+GROUP BY governmentform
+ORDER BY count DESC
+
+-- How many countries are in North America?
+SELECT continent, COUNT(name) 
+FROM country 
+WHERE continent = 'North America'
+GROUP BY continent 
+
+-- What is the total population of all continents?
+SELECT continent, SUM(population)
+FROM country
+GROUP BY continent
